@@ -1,0 +1,20 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  PROJECT_ID: "my-gcp-project-id"
+
+before_script:
+  - gcloud auth activate-service-account --key-file="$GOOGLE_APPLICATION_CREDENTIALS"
+  - gcloud config set project $PROJECT_ID
+
+build:
+  stage: build
+  script:
+    - gcloud builds submit --config cloudbuild.yaml .
+
+deploy:
+  stage: deploy
+  script:
+    - kubectl apply -f k8s-deployment.yaml

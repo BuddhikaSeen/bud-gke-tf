@@ -1,1 +1,22 @@
 https://cloud.google.com/sdk/docs/install
+
+https://cloud.google.com/docs/terraform/authentication
+
+
+ Service Account for GitLab CI/CD:gcloud iam service-accounts create gitlab-ci-sa --display-name "GitLab CI Service Account"
+Required Permissions:
+gcloud projects add-iam-policy-binding my-gcp-project-id \
+  --member="serviceAccount:gitlab-ci-sa@my-gcp-project-id.iam.gserviceaccount.com" \
+  --role="roles/cloudbuild.builds.editor"
+
+gcloud projects add-iam-policy-binding my-gcp-project-id \
+  --member="serviceAccount:gitlab-ci-sa@my-gcp-project-id.iam.gserviceaccount.com" \
+  --role="roles/container.developer"
+
+Store Service Account Key:
+gcloud iam service-accounts keys create ~/gitlab-ci-key.json \
+  --iam-account gitlab-ci-sa@my-gcp-project-id.iam.gserviceaccount.com
+
+git add .
+git commit -m "Add CI/CD pipeline for GCP"
+git push origin main
