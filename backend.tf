@@ -1,6 +1,7 @@
 terraform {
   backend "gcs" {
-    bucket  = "my-terraform-state-bucket"
+    bucket  = "bud-terraform-state-bucket"
     prefix  = "gke-cluster"
+    # credentials = "~/terraform-key.json"
   }
 }

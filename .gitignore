@@ -1,6 +1,8 @@
 # Local .terraform directories
 **/.terraform/*
 
+google-cloud-sdk/*
+
 # .tfstate files
 *.tfstate
 *.tfstate.*
