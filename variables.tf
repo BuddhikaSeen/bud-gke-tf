@@ -11,3 +11,8 @@ variable "zone" {
   description = "GCP zone"
   default     = "us-central1-a"
 }
+
+variable "bucket_name" {
+  description = "The name of the bucket to create"
+  default = "bud-gke-bucket"
+}
